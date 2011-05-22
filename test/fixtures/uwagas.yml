@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  tresc: MyText
+  nauczyciel_id: 1
+  uczen_id: 1
+
+two:
+  tresc: MyText
+  nauczyciel_id: 1
+  uczen_id: 1

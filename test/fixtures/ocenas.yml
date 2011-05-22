@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  rodzaj: MyString
+  rok_szkolny: MyString
+  archiwalna: false
+  przedmiot_id: 1
+  nauczyciel_id: 1
+  uczen_id: 1
+  wartosc: 1
+
+two:
+  rodzaj: MyString
+  rok_szkolny: MyString
+  archiwalna: false
+  przedmiot_id: 1
+  nauczyciel_id: 1
+  uczen_id: 1
+  wartosc: 1

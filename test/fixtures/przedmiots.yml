@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nauczyciel_id: 1
+  przedmiot_id: 1
+  nazwa: MyString
+  rok_szkolny: MyString
+
+two:
+  nauczyciel_id: 1
+  przedmiot_id: 1
+  nazwa: MyString
+  rok_szkolny: MyString
