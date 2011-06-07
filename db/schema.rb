@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110522114206) do
+ActiveRecord::Schema.define(:version => 20110606221950) do
 
   create_table "klasas", :force => true do |t|
     t.integer  "liczba_uczniow"
@@ -54,9 +54,29 @@ ActiveRecord::Schema.define(:version => 20110522114206) do
 
   create_table "przedmiots", :force => true do |t|
     t.integer  "nauczyciel_id"
-    t.integer  "przedmiot_id"
     t.string   "nazwa"
     t.string   "rok_szkolny"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "klasa"
+  end
+
+  create_table "rails_admin_histories", :force => true do |t|
+    t.string   "message"
+    t.string   "username"
+    t.integer  "item"
+    t.string   "table"
+    t.integer  "month",      :limit => 2
+    t.integer  "year",       :limit => 5
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_histories_on_item_and_table_and_month_and_year"
+
+  create_table "rodzic_uczens", :force => true do |t|
+    t.integer  "uczen_id"
+    t.integer  "rodzic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,6 +103,13 @@ ActiveRecord::Schema.define(:version => 20110522114206) do
   add_index "rodzics", ["email"], :name => "index_rodzics_on_email", :unique => true
   add_index "rodzics", ["reset_password_token"], :name => "index_rodzics_on_reset_password_token", :unique => true
 
+  create_table "uczen_klasas", :force => true do |t|
+    t.integer  "uczen_id"
+    t.integer  "klasa_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "uczens", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
@@ -101,6 +128,8 @@ ActiveRecord::Schema.define(:version => 20110522114206) do
     t.string   "nazwisko"
     t.string   "data_urodzenia"
     t.integer  "pesel"
+    t.integer  "rodzic_id"
+    t.string   "klasa"
   end
 
   add_index "uczens", ["email"], :name => "index_uczens_on_email", :unique => true

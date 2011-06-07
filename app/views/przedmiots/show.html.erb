@@ -1,0 +1,12 @@
+<h1><%= @przedmiot.nazwa %>, <%= @przedmiot.klasa %></h1>
+<%= @przedmiot.rok_szkolny %><br />
+
+<% if @uczniowie.any? %>
+	<% @uczniowie.each do |u| %>
+		<% if (u.klasa) == (@przedmiot.klasa) %> <br />
+			<%= u.imie %> <%= u.nazwisko %>
+		<% end %>
+	<% end %>
+<% end %>
+
+<br/><%= link_to "Powrót", przedmiots_path %>

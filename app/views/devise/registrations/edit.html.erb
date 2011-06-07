@@ -1,0 +1,49 @@
+<% if uczen_signed_in? %>
+<h2>Edytuj profil <%= current_uczen.email %></h2>
+<% elsif nauczyciel_signed_in? %>
+<h2>Edytuj profil <%= current_nauczyciel.email %></h2>
+<% else %>
+<h2>Edytuj profil <%= current_rodzic.email %></h2>
+<% end %>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <p><label for="imie">Imię</label>:<br/>
+  <%= f.text_field :imie %></p>
+  
+  <p><label for="nazwisko">Nazwisko</label>:<br/>
+  <%= f.text_field :nazwisko %></p>
+
+  <p><label for="email">E-mail</label>:<br />
+  <%= f.text_field :email %></p>
+
+  <% if uczen_signed_in? %>
+	<p><label for="data_urodzenia">Data urodzenia</label>:<br/>
+    <%= f.text_field :data_urodzenia %></p>
+
+    <p><label for="pesel">PESEL</label>:<br/>
+    <%= f.text_field :pesel %></p>
+
+  <% else %>
+    <p><label for="telefon">Nr telefonu</label>:<br/>
+    <%= f.text_field :telefon %></p>
+  <% end %>
+  
+  <p><label for="password">Hasło <i>(zostaw puste, jeśli nie chcesz go zmieniać)</i></label>:<br />
+  <%= f.password_field :password %></p>
+
+  <p><label for="password_confirmation">Powtórz hasło</label>:<br />
+  <%= f.password_field :password_confirmation %></p>
+
+  <p><label for="current_password">Aktualne hasło <i>(potrzebujemy Twojego hasła, żeby zmienić dane)</i><br />
+  <%= f.password_field :current_password %></p>
+
+  <p><%= f.submit "Edytuj" %></p>
+<% end %>
+
+<h3>Chcesz usunąć konto?</h3>
+
+<p><%= link_to "Usuń moje konto", registration_path(resource_name), :confirm => "Jesteś pewien, że chcesz USUNĄĆ KONTO?", :method => :delete %></p><br/>
+
+<%= link_to "Powrót", :back %>

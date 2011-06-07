@@ -5,6 +5,25 @@
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
+<center>
+	<% if uczen_signed_in? %>
+      <%= link_to('Wyloguj', destroy_uczen_session_path) %>
+	  <%= link_to 'Edytuj profil', edit_uczen_registration_path %>
+    <% elsif nauczyciel_signed_in? %>
+      <%= link_to('Wyloguj', destroy_nauczyciel_session_path) %>
+	  <%= link_to 'Edytuj profil', edit_nauczyciel_registration_path %>
+	<% elsif rodzic_signed_in? %>
+      <%= link_to('Wyloguj', destroy_rodzic_session_path) %>
+	  <%= link_to 'Edytuj profil', edit_rodzic_registration_path %>
+    <% else %>
+      <%= link_to "Założ konto rodzica", '/rodzics/sign_up' %> |
+      <%= link_to('Zaloguj jako rodzic', new_rodzic_session_path)  %> |
+      <%= link_to "Załóż konto nauczyciela", '/nauczyciels/sign_up' %> |
+      <%= link_to('Zaloguj jako nauczyciel', new_nauczyciel_session_path)  %> |
+   	  <%= link_to "Załóż konto ucznia", '/uczens/sign_up' %> |
+      <%= link_to('Zaloguj jako uczeń', new_uczen_session_path)  %>
+    <% end %>
+</center>
 </head>
 <body>
 

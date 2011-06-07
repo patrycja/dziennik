@@ -1,0 +1,11 @@
+<% if @przedmioty.any? %>
+	Przedmioty, które prowadzisz: <br />
+	<% @przedmioty.each do |p| %>
+		<%= link_to p.nazwa, przedmiot_path(p) %><br />
+	<% end %>
+<% else %>
+	Nie prowadzisz aktualnie żadnego przedmiotu. <br />
+<% end %><br />
+<%= link_to "dodaj przedmiot", new_nauczyciel_przedmiot_path(@nauczyciel) %>
+<br /><br />
+<%= link_to "Powrót", ocenas_path %>

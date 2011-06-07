@@ -1,0 +1,18 @@
+<% unless @dzieci_all.any? %>
+	W bazie nie mamy zapisanych żadnych uczniów
+<% else %>
+	Wyszukaj swoje dziecko: <br />
+	<%- form_for :search, @search, :html => {:method => :get} do |f| %>
+	    <label for="nazwisko_contains">Nazwisko:</label>
+	    <%= f.text_field :nazwisko_contains %>
+	    <%= f.submit "Szukaj" %>
+	 <%- end %> <br />
+<% end %>
+
+<% @dzieci.each do |d| %>
+	<%= d.nazwisko %>, 
+	<%= link_to "Dodaj jako swoje dziecko", {:action => "create", :controller => "rodzic_uczen", 
+			:uczen_id => d.id, :rodzic_id => @rodzic.id}, :method => :post %><br />
+<% end %>
+
+<%= link_to "Powrot", ocenas_path %>

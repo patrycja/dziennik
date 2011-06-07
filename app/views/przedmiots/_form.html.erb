@@ -1,0 +1,18 @@
+<%- form_for [@przedmiot.nauczyciel, @przedmiot] do |f|%>
+	<% if @przedmiot.errors.any? %>
+	<p />
+	<h2><%= pluralize(@przedmiot.errors.count, "error") %> nie mozna zapisac:</h2>
+		<ul>
+			<% @przedmiot.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	<% end %>
+<p><label for="przedmiot_nazwa">Nazwa</label>:
+<%= f.text_field 'nazwa' %></p>
+<p><label for="przedmiot_rok_szkolny">Rok szkolny</label>:
+<%= f.text_field 'rok_szkolny' %></p>
+<p><label for="przedmiot_klasa">Klasa</label>:
+<%= f.text_field 'klasa' %></p>
+<%= f.submit "Zapisz zmiany" %>
+<%- end %>

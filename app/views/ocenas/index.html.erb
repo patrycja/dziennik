@@ -1,0 +1,30 @@
+<% if @user.class.name == "Uczen" %> 
+  	<h1>Dziennik ocen ucznia: <%= @user.imie %> <%= @user.nazwisko %></h1> <br /> 
+ 	<% unless @user.uczen_klasas.any? %>
+	  <%= link_to "Zapisz się do klasy", uczens_path %><br />
+	<% else %>
+	  klasa: <%= @user.uczen_klasas %></h1><br /> 
+	<% end %>
+		
+<% elsif @user.class.name == "Nauczyciel" %>
+  <h1>Dostęp na prawach nauczyciela: <%= @user.imie %> <%= @user.nazwisko %></h1>
+	<br />
+  <%= link_to "Moje przedmioty", przedmiots_path %> <br />
+  <%= link_to "Utwórz nową klasę", new_klasa_path %>
+
+
+<% elsif @user.class.name == "Rodzic" %>
+  <h1>Użytkownik: <%= @user.imie %> <%= @user.nazwisko %></h1> <br />
+	<% if @dzieci.any? %>
+	 <% @dzieci.each do |dziecko| %>
+		<%= dziecko.imie %> <%= dziecko.nazwisko %>, <%= link_to "Przegladaj oceny", '#' %>, <%= link_to "Przegladaj uwagi", '#' %><br/>
+	 <% end %>
+	<% else %>
+	  Nie masz przypisanych żadnych dzieci do swojego konta.
+	<% end %><br />
+	<%= link_to "Dodaj dziecko", rodzics_path %>
+<%else %>
+
+
+  <h1>Nie jesteś zalogowany.</h1>
+<%end%>

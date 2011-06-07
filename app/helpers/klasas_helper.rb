@@ -1,0 +1,2 @@
+module KlasasHelper
+end

@@ -1,0 +1,16 @@
+<%- form_for @klasa do |f|%>
+	<% if @klasa.errors.any? %>
+	<p />
+	<h2><%= pluralize(@klasa.errors.count, "error") %> nie mozna zapisac:</h2>
+		<ul>
+			<% @klasa.errors.full_messages.each do |msg| %>
+			<li><%= msg %></li>
+			<% end %>
+		</ul>
+	<% end %>
+<p><label for="klasa_nazwa">Nazwa</label>:
+<%= f.text_field 'nazwa' %></p>
+<p><label for="klasa_liczba_uczniow">Liczba uczniów</label>:
+<%= f.text_field 'liczba_uczniow' %></p>
+<%= f.submit "Zapisz zmiany" %>
+<%- end %>
